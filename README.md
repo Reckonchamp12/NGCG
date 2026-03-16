@@ -8,6 +8,9 @@
 
 ---
 ![Nine dynamical systems across three categories: Hamiltonian systems with known conservation laws (mass-spring, Hénon-Heiles, coupled springs), non-Hamiltonian systems with conservation laws (Lotka-Volterra, Burgers, Kuramoto-Sivashinsky), and chaotic systems with no invariant (double pendulum, Lorenz, restricted three-body)](Assets/gallery.png)
+![Ground-truth verification of conservation laws in the generated dataset. For each system with a known invariant, we plot C(z_t) / C(z_0) along 6 independent test trajectories](conservation_check.png)
+
+
 ## Overview
 
 NGCG is a four-stage framework for **automatic discovery of conservation laws** from noisy trajectory data of dynamical systems. Given only time-series observations (no equations, no priors), NGCG learns a compact symbolic expression $C(z)$ such that $C(z_t)$ is approximately constant along every trajectory.
