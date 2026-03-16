@@ -227,8 +227,8 @@ If you use this code, please cite:
 @misc{ngcg2025,
   title  = {NGCG: Neural-Guided Conjecture Generation for Conservation Laws},
   author = {[Authors]},
-  year   = {2025},
-  url    = {https://github.com/YOUR_USERNAME/ngcg}
+  year   = {2026},
+  url    = {https://github.com/Reckonchamp12/ngcg}
 }
 ```
 
