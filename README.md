@@ -8,7 +8,7 @@
 
 ---
 ![Nine dynamical systems across three categories: Hamiltonian systems with known conservation laws (mass-spring, Hénon-Heiles, coupled springs), non-Hamiltonian systems with conservation laws (Lotka-Volterra, Burgers, Kuramoto-Sivashinsky), and chaotic systems with no invariant (double pendulum, Lorenz, restricted three-body)](Assets/gallery.png)
-![Ground-truth verification of conservation laws in the generated dataset. For each system with a known invariant, we plot C(z_t) / C(z_0) along 6 independent test trajectories](conservation_check.png)
+![Ground-truth verification of conservation laws in the generated dataset. For each system with a known invariant, we plot C(z_t) / C(z_0) along 6 independent test trajectories](Assets/conservation_check.png)
 
 
 ## Overview
