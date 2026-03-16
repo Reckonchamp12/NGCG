@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Data (large files — store separately)
+*.h5
+*.hdf5
+*.pkl
+*.pt
+
+# Results (generated — not tracked)
+results/
+ngcg_win_results/
+ngcg_*_results/
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# PySR temporary files
+hall_of_fame*.csv
