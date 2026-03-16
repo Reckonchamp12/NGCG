@@ -1,0 +1,80 @@
+# NGCG Default Configuration
+# All hyperparameters used in the paper experiments.
+# Override any value via CLI: --config configs/default.yaml --dyn_lr 1e-3
+
+# ── Paths ────────────────────────────────────────────────────────────────────
+data:
+  hdf5_path: "ngcg_data_clean.h5"
+  out_dir:   "results"
+  seed:      42
+
+# ── Stage 1: Neural Dynamics ─────────────────────────────────────────────────
+dynamics:
+  hidden:    [256, 256]
+  epochs:    150
+  patience:  15
+  lr:        3.0e-3
+  batch:     2048
+  act:       "tanh"
+
+# ── Stage 2: Multi-Restart φ Network ─────────────────────────────────────────
+phi:
+  hidden:       [64, 64, 64]
+  n_restarts:   10       # reduced to 3 for PDE systems
+  epochs:       300
+  patience:     40
+  lr:           1.0e-3
+  l2:           1.0e-4
+  # Anti-collapse loss: L = intra_var / (inter_var + eps)
+  anti_collapse_eps: 1.0e-4
+
+# ── Stage 3: Symbolic Extraction ─────────────────────────────────────────────
+symbolic:
+  # PySR
+  pysr_niter:    50
+  pysr_maxsize:  25
+  pysr_n_pts:    1000
+
+  # Polynomial Lasso (eigendecomposition)
+  poly_max_degree: 3
+
+  # Lotka-Volterra log-basis Lasso
+  lv_lambdas: [1.0e-2, 3.0e-3, 1.0e-3, 3.0e-4, 1.0e-4, 3.0e-5, 1.0e-5]
+
+# ── Stage 4: Verification Gate ───────────────────────────────────────────────
+gate:
+  strict:         0.010   # main acceptance threshold: std/|mean| < 1%
+  loose:          0.050   # DR threshold for reporting
+  very_strict:    0.005   # DR_strict threshold
+  diversity_ratio: 10.0   # inter_std / intra_std must exceed this
+
+# ── Evaluation ───────────────────────────────────────────────────────────────
+eval:
+  rollout_k: 16   # steps for MSE@16 and CV computation
+
+# ── Systems ──────────────────────────────────────────────────────────────────
+systems:
+  all:
+    - mass_spring
+    - lotka_volterra
+    - double_pendulum
+    - henon_heiles
+    - lorenz
+    - coupled_springs
+    - three_body
+    - burgers
+    - ks
+
+  pde: [burgers, ks]
+  positive_state: [lotka_volterra]
+
+  true_laws:
+    mass_spring:     "p**2/(2*m) + k*q**2/2"
+    lotka_volterra:  "delta*x - gamma*log(x) + beta*y - alpha*log(y)"
+    henon_heiles:    "px**2/2 + py**2/2 + x**2/2 + y**2/2 + x**2*y - y**3/3"
+    coupled_springs: "p1**2/2 + p2**2/2 + k1*q1**2/2 + k2*(q2-q1)**2/2 + k3*q2**2/2"
+    burgers:         "u_mean"
+    ks:              "u_mean"
+    double_pendulum: null
+    lorenz:          null
+    three_body:      null
